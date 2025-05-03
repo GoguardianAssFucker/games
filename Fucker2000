@@ -1,0 +1,21 @@
+
+import java.io.*;
+import java.nio.file.*;
+
+public class DisableGoGuardian {
+    public static void main(String[] args) {
+        try {
+            // Path to the file that disables GoGuardian
+            String filePath = "C:\Path\To\Your\DisableGoGuardian.bat";
+            // Create a batch file to disable GoGuardian
+            String batchContent = "@echo off\nnet stop GoGuardian\n";
+            Files.write(Paths.get(filePath), batchContent.getBytes());
+            // Execute the batch file
+            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", filePath);
+            processBuilder.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
